@@ -119,9 +119,11 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { id } = params as { id: string };
 
+  const pokemon = await getPokemonInfo(id);
+
   return {
     props: {
-      pokemon: getPokemonInfo(id),
+      pokemon: JSON.stringify(pokemon),
     },
   };
 };
